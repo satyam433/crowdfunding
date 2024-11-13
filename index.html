@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crowdfunding - Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Sign Up</h1>
+        <form id="signin-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+            
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" required>
+            
+            <label for="aadhaar">Aadhaar Number:</label>
+            <input type="text" id="aadhaar" required>
+            
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <!-- Form to change target amount (only on Sign Up page) -->
+        <div class="target-form">
+            <h4>Set Target Amount</h4>
+            <label for="new-target">New Target Amount:</label>
+            <input type="number" id="new-target">
+            <button type="button" onclick="setNewTarget()">Set New Target</button>
+        </div>
+
+        <!-- Small Reset Button (only on Sign Up page) -->
+        <button class="reset-button" onclick="resetFunding()">Reset</button>
+    </div>
+
+    <script>
+        // Store user data and set target amount
+        document.getElementById("signin-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const phone = document.getElementById("phone").value;
+            const aadhaar = document.getElementById("aadhaar").value;
+
+            // Store user data in localStorage
+            localStorage.setItem("username", username);
+            localStorage.setItem("phone", phone);
+            localStorage.setItem("aadhaar", aadhaar);
+
+            // Default target amount if not set
+
+            // Redirect to dashboard
+            window.location.href = "dashboard.html";
+        });
+
+        function setNewTarget() {
+            const newTarget = parseInt(document.getElementById("new-target").value);
+            if (!isNaN(newTarget) && newTarget > 0) {
+                localStorage.setItem("targetAmount", newTarget);
+                alert("New target set: Rs " + newTarget);
+            } else {
+                alert("Please enter a valid target amount.");
+            }
+        }
+
+        function resetFunding() {
+            localStorage.removeItem("donations");
+            alert("Donations have been reset.");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+/* General styling for the light theme */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Light background color */
+    color: #333; /* Dark text for contrast */
+    margin: 0;
+    padding: 0;
+    position: relative;
+    height: 100vh;
+    background-image: url('backimg.jpg'); /* Add background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Light overlay (removed) */
+
+/* Navbar styling */
+.navbar {
+    background-color: #ffffff93; /* White navbar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: left;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar li {
+    margin: 0 15px;
+}
+
+.navbar a {
+    color: #000000; /* Dark text */
+    text-decoration: none;
+    font-size: 15px;
+    padding: 20px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    font-weight: 400;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #4a558c; /* Soft blue color on hover */
+}
+
+/* Container styling */
+.container, .dashboard, .donation-form-container {
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+    padding: 2em;
+    background-color: rgba(255, 255, 255, 0.566); /* Semi-transparent white background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 6em; /* Margin to avoid overlap with navbar */
+}
+.container button{
+    background-color: #09061f;
+    color: white;
+}
+input:focus{
+    outline: none;
+}
+/* Dashboard styling */
+.dashboard {
+    padding-top: 1em;
+    margin-top: 1em;
+    text-align: center;
+}
+
+h1, h2, h3, h4 {
+    color: #333; /* Dark text */
+}
+
+/* Form and button styling */
+label, input, button {
+    display: block;
+    margin: 1em auto;
+    width: 100%;
+}
+
+input, button {
+    padding: 0.6em;
+    font-size: 1em;
+    background: #ffffff;
+    color: #333;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px;
+}
+
+button {
+    cursor: pointer;
+    background-color: #0d0826; /* Soft blue */
+    color: #ffffff;
+    border: none;
+}
+
+button:hover {
+    background-color: #005bb5; /* Darker blue */
+}
+
+/* Table styling for donations */
+.donation-table {
+    width: 100%;
+    margin-top: 1em;
+    border-collapse: collapse;
+}
+
+.donation-table th, .donation-table td {
+    padding: 0.8em;
+    border: 1px solid #ddd; /* Light border */
+    text-align: left;
+}
+
+.donation-table th {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.donation-table td {
+    background-color: #ffffff;
+    color: #333;
+}
+
+/* Small Reset button positioned at bottom-right */
+.reset-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 0.5em 1em;
+    background-color: #ffffff;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8em;
+    width: 100px;
+}
+
+.reset-button:hover {
+    background-color: #e0e0e0;
+}
+
+/* Target form styling */
+.target-form {
+    margin-top: 2em;
+    text-align: center;
+}
+
+.target-form label, .target-form input {
+    margin-bottom: 1em;
+}
+
+.target-form input {
+    padding: 0.6em;
+    width: 80%;
+    background: #f9f9f9; /* Lighter background */
+    color: #333;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px;
+}
+
+.target-form button {
+    width: 200px;
+    margin-bottom: 30px;
+}
+
+/* About Page Specific Styles */
+.container {
+    max-width: 800px; /* Increase width for About page */
+    margin-top: 7em; /* Adjust to avoid navbar overlap */
+    padding: 3em; /* More padding for the About content */
+}
+
+/* Heading Styling for About Page */
+h1, h2 {
+    text-align: center;
+    color: #333; /* Dark text */
+}
+
+h1 {
+    margin-bottom: 0.5em;
+}
+
+h2 {
+    margin-top: 2em;
+    color: #000000; /* Soft blue for section headings */
+}
+
+/* Paragraph Styling for About Page */
+p {
+    text-align: justify;
+    line-height: 1.8;
+    margin-bottom: 1.5em;
+    color: #333; /* Dark text */
+}
+
+/* List styling for the About Page */
+ul {
+    padding-left: 20px;
+    color: #333;
+    list-style-type: disc;
+}
+
+ul li {
+    margin-bottom: 1em;
+}
+
+/* Button Styling for About Page */
+button {
+    cursor: pointer;
+    background-color: #17165b; /* Soft blue */
+    color: #ffffff;
+    border: none;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    border-radius: 5px;
+    margin: 2em auto;
+    display: block;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #120f39; /* Darker blue */
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crowdfunding - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+
+    <!-- Dashboard Header Section -->
+    <div class="dashboard">
+        <h1>Dashboard</h1>
+        <div class="stats">
+            <h2>Welcome, <span id="display-username"></span></h2>
+            <p>Phone Number: <span id="display-phone"></span></p>
+            <h3>Funding Status: Rs <span id="total-amount">0</span> / Rs <span id="target-amount"></span></h3>
+            <h4>Donation List:</h4>
+        </div>
+        
+        <!-- Donations Table -->
+        <table class="donation-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Amount Donated</th>
+                </tr>
+            </thead>
+            <tbody id="donation-list"></tbody>
+        </table>
+    </div>
+    
+    <!-- Separate Donation Form section -->
+    <div class="donation-form-container">
+        <h2>Donate to the Fund</h2>
+        <form id="donation-form">
+            <label for="amount">Amount to Donate:</label>
+            <input type="number" id="amount" required>
+            <button type="button" onclick="donate()">Donate</button>
+        </form>
+    </div>
+
+    <script>
+        // Retrieve target amount from localStorage or set default to 5000
+        let targetAmount = localStorage.getItem("targetAmount") ;
+        let donations = JSON.parse(localStorage.getItem("donations")) || [];
+        let totalAmount = donations.reduce((sum, donation) => sum + donation.amount, 0);
+
+        // Display user details
+        document.getElementById("display-username").innerText = localStorage.getItem("username");
+        document.getElementById("display-phone").innerText = localStorage.getItem("phone");
+        document.getElementById("total-amount").innerText = totalAmount;
+        document.getElementById("target-amount").innerText = targetAmount;
+
+        // Function to render the donation list
+        function renderDonations() {
+            const donationList = document.getElementById("donation-list");
+            donationList.innerHTML = "";
+            donations.forEach(donation => {
+                donationList.innerHTML += `
+                    <tr>
+                        <td>${donation.name}</td>
+                        <td>${donation.phone}</td>
+                        <td>Rs ${donation.amount}</td>
+                    </tr>`;
+            });
+        }
+
+        // Donate function to handle donations
+        function donate() {
+            const amount = parseInt(document.getElementById("amount").value);
+            const name = localStorage.getItem("username");
+            const phone = localStorage.getItem("phone");
+
+            // Check if the amount is valid and target is not exceeded
+            if (!isNaN(amount) && amount > 0 && totalAmount + amount <= targetAmount) {
+                donations.push({ name, phone, amount });
+                localStorage.setItem("donations", JSON.stringify(donations));
+
+                // Update the total amount and display it
+                totalAmount += amount;
+                document.getElementById("total-amount").innerText = totalAmount;
+                renderDonations();
+
+                // Check if the target is reached
+                if (totalAmount >= targetAmount) {
+                    document.getElementById("donation-form").innerHTML = "<p>Target Completed!</p>";
+                }
+            } else {
+                alert("Invalid amount or target reached!");
+            }
+        }
+
+        // Reset function to clear donations and total
+        function resetFunding() {
+            donations = [];
+            totalAmount = 0;
+            localStorage.setItem("donations", JSON.stringify(donations));
+            document.getElementById("total-amount").innerText = totalAmount;
+            document.getElementById("donation-form").innerHTML = ` 
+                <label for="amount">Amount to Donate:</label>
+                <input type="number" id="amount" required>
+                <button type="button" onclick="donate()">Donate</button>`;
+            renderDonations();
+        }
+
+        // Render the donations on page load
+        renderDonations();
+    </script>
+</body>
+</html>
